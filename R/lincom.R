@@ -69,7 +69,7 @@ lincom <- function(reg, comb, hyp=0, conf.level=.95, robustSE = TRUE, eform=reg$
       newCoef <- exp(comb%*%reg$coefficients[,1,drop=FALSE])
     }
     
-    printMat <- matrix(c(round(newCoef, 4), round(SE, 4), round(tStat, 4), round(pval, 4), round(CIL, 4), round(CIU, 4)), nrow=dim(comb)[1])
+    printMat <- matrix(c(round(newCoef, 4), round(SE, 4), round(tStat, 4), signif(pval, 4), round(CIL, 4), round(CIU, 4)), nrow=dim(comb)[1])
     dimnames(printMat) <- list(rep("", dim(comb)[1]), c("Estimate", "Std. Err.", "T", "Pr(T > |t|)", paste(format(100*conf.level),"%",c("L","H"),sep="")))
     if(eform){
       dimnames(printMat) <- list("", c("e(Est)", "Std. Err.", "T", "Pr(T > |t|)", paste("e(", paste(format(100*conf.level),"%",c("L","H"),sep=""), ")", sep="")))
